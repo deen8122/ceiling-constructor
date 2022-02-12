@@ -1,0 +1,17 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^admin2$ admin2 [L]
+RewriteRule ^konfigurator$ konfigurator [L]
+RewriteCond %{REQUEST_URI} !^/konfigurator
+
+RewriteBase /
+RewriteRule ^([-a-z0-9]+)/([-a-z0-9]+)/([-a-z0-9]+)/([-a-z0-9]+)$ index.php?menu=$1&submenu=$2&id=$3&id2=$4 [L]
+RewriteRule ^([-a-z0-9]+)/([-a-z0-9]+)/([-a-z0-9]+)$ index.php?menu=$1&submenu=$2&id=$3 [L]
+RewriteCond %{QUERY_STRING} (.*)
+RewriteRule ^([-a-z0-9]+)/([-a-z0-9]+)?$ index.php?menu=$1&submenu=$2&%1  [NC]
+
+RewriteRule ^([-a-z0-9]+)$ index.php?menu=$1  [NC]
+
+AddDefaultCharset cp1251
+AddType 'text/html; charset=cp1251' .html .htm .shtml
